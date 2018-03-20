@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="challengeapp">
+<head>
+	<title>ThirdEye - Admin</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+  </style>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<!-- sliders -->
+	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
+	<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
+
+	<!-- Magnific Popup -->
+	<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="css/newchallenge.css" />
+  <style>
+  #loginerror{
+    display:none;
+    margin-bottom: 30px;
+  }
+  #loginerrorspan{
+    color:#f44336;
+
+
+  }
+  </style>
+  <!-- <link type="text/css" rel="stylesheet" href='css/contestpage.css' /> -->
+</head>
+
+<body ng-controller='challengecontroller'>
+  <!-- Header -->
+  <header id="home" style='height:100%; background:black;'>
+    <!-- Background Image -->
+
+    <!-- /Background Image -->
+
+    <!-- Nav -->
+    <nav id="nav" class="navbar nav-transparent">
+      <div class="container">
+
+        <div class="navbar-header">
+          <!-- Logo -->
+          <div class="navbar-brand">
+            <a href="index.html">
+              <img class="logo" src="img/logo.png" alt="logo">
+              <img class="logo-alt" src="img/logo-alt.png" alt="logo">
+            </a>
+          </div>
+          <!-- /Logo -->
+
+          <!-- Collapse nav button -->
+          <div class="nav-collapse">
+            <span></span>
+          </div>
+          <!-- /Collapse nav button -->
+        </div>
+
+        <!--  Main navigation  -->
+        <!--  Main navigation  -->
+				<ul class="main-nav nav navbar-nav navbar-right">
+          <li><a href="mychallenge.html">My Challenges</a></li>
+          <li class="active"><a href="#">New Challenge</a></li>
+					<li><a href='viewideasadmin.html'>View ideas</a></li>
+					<li><a href="logout.html">Logout</a></li>
+				</ul>
+        <!-- /Main navigation -->
+
+      </div>
+    </nav>
+    <!-- /Nav -->
+
+    <!-- home wrapper -->
+
+
+
+    <!-- /home wrapper -->
+
+
+  </header>
+  <div id="about" class="section md-padding" style='padding-top:50px;'>
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+        <div class='col-md-offset-1'>
+          <form enctype="multipart/form-data" method="POST">
+						<p class='totalprize' style='color:black;'>
+	            Question Title
+	          </p>
+						<hr>
+						<p>Title of the Question<span style='color:red;'>*</span></p>
+            <textarea class="input" placeholder="Main Question" id='main_question' required rows="1" maxlength="200" style="width:100%; padding:15px;"></textarea>
+            <br/>
+						<br/>
+						<p class='totalprize' style='color:black;'>
+	            Description
+	          </p>
+						<hr>
+						<p>Enter a brief description of the question<span style='color:red;'>*</span></p>
+            <textarea class="input" placeholder="Main Question" id='description' required rows="1"  style="width:100%; padding:15px;"></textarea>
+						<br/>
+            <br/>
+						<p class='totalprize' style='color:black;'>
+	            Deliverables
+	          </p>
+	          <hr>
+						<p>Enter your expectations from the solution<span style='color:red;'>*</span></p>
+						<textarea id="editor" style="height:100px;"></textarea>
+            <br/>
+						<br/>
+	          <p class='totalprize' style='color:black;'>
+	            Prizes
+	          </p>
+	          <hr>
+						<p>Enter the reward to be given to the Top 3 solutions<span style='color:red;'>*</span></p>
+	          <p>First prize : &#8377; <input class="input" type="number" id="first_prize"/> Second prize : &#8377;<input class="input" type="number" id="second_prize"/>Third prize : &#8377;<input class="input" type="number" id="third_prize"/></p>
+						<br/>
+						<br/>
+            <p class='totalprize' style='color:black;'>
+              Category
+            </p>
+            <hr>
+            <p>Enter the category to which the problem belongs<span style='color:red;'>*</span></p>
+            <input class="input" id="category"/>
+            <br/>
+            <br/>
+						<p class='totalprize' style='color:black;'>
+	          Image
+	          </p>
+	          <hr>
+            <div>
+                        <div><label for="question_image">Please select image to be displayed for the question<span style='color:red;'>*</span></label></div>
+                        <div><input type="file" name="img_file" onchange="angular.element(this).scope().uploadedFileImg(this)" id="question_image"  /></div>
+            </div>
+            <br/>
+						<br/>
+						<p class='totalprize' style='color:black;'>
+	          Supplementary File
+	          </p>
+	          <hr>
+            <div>
+                        <div><label for="supplementary_file">Please select supplementary file</label></div>
+                        <div><input type="file" name="file" onchange="angular.element(this).scope().uploadedFileSup(this)" id="supplementary_file"  /></div>
+            </div>
+						<br/>
+						<br/>
+						<p class='totalprize' style='color:black;'>
+	          Submission Deadline
+	          </p>
+	          <hr>
+						<p> Enter the final date to accept solutions<span style="color:red;">*</span></p>
+						<input class="class input" type="date" id="final_date" name="final_date"/>
+						<br/>
+            <div  id="loginerror"style='margin-top:20px;'>
+                <span id="loginerrorspan">
+                  Please fill the solution field
+                </span>
+            </div>
+            <div style='text-align:center;'>
+            <button class='main-btn' ng-click='submit()'>Submit</button></div>
+        </form>
+        </div>
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /About -->
+
+  <!-- Footer -->
+  <footer id="footer" class="sm-padding bg-dark">
+
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Row -->
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <!-- footer logo -->
+          <div class="footer-logo">
+            <a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
+          </div>
+          <!-- /footer logo -->
+
+
+
+        </div>
+
+      </div>
+      <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+  </footer>
+  <!-- /Footer -->
+
+
+
+	<script src="bower_components/jquery/jquery-3.2.1.min.js"></script>
+
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+  <script src="bower_components/bootstrap/js/popper.js"></script>
+  <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/tilt/tilt.jquery.min.js"></script>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+<!-- Slider flies -->
+  <script src="js/newchallenge.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>

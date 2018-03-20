@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="viewideasapp">
+<head>
+	<title>ThirdEye - Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+  </style>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<!-- sliders -->
+	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
+	<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
+
+	<!-- Magnific Popup -->
+	<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+  <style>
+  #loginerror{
+    display:none;
+    margin-bottom: 30px;
+  }
+  #loginerrorspan{
+    color:#f44336;
+
+
+  }
+  .dropdown ul li a{
+    color:black;
+    padding:5px;
+  }
+  .disp{
+    display:none;
+  }
+  </style>
+  <link rel="stylesheet" href="./bower_components/materializecss/materialize.min.css">
+
+  <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+</head>
+
+<body ng-controller='viewideascontroller'>
+  <!-- Header -->
+  <header id="home" style='height:7vh; background:black;padding-bottom:0px;'>
+    <!-- Background Image -->
+
+    <!-- /Background Image -->
+
+    <!-- Nav -->
+    <nav id="nav" style='height:7vh;'class="navbar nav-transparent">
+      <div class="container">
+
+        <div class="navbar-header">
+          <!-- Logo -->
+          <div class="navbar-brand">
+            <a href="index.html">
+              <img class="logo" src="img/logo.png" alt="logo">
+              <img class="logo-alt" src="img/logo-alt.png" alt="logo">
+            </a>
+          </div>
+          <!-- /Logo -->
+
+          <!-- Collapse nav button -->
+          <div class="nav-collapse">
+            <span></span>
+          </div>
+          <!-- /Collapse nav button -->
+        </div>
+
+        <!--  Main navigation  -->
+        <!--  Main navigation  -->
+				<ul class="main-nav nav navbar-nav navbar-right">
+          <li ><a href="#">My Challenges</a></li>
+          <li><a href="admin-newchallenge.html">New Challenge</a></li>
+					<li class="active"><a href='viewideasadmin.html'>View ideas</a></li>
+					<li><a href="logout.html">Logout</a></li>
+				</ul>
+        <!-- /Main navigation -->
+
+      </div>
+    </nav>
+    <!-- /Nav -->
+
+    <!-- home wrapper -->
+
+
+
+    <!-- /home wrapper -->
+
+
+
+  </header>
+  <div id="about" class="section md-padding" >
+    <div class="container target">
+
+          <br>
+          <div class="row">
+
+            <div  class="col-xs-8 content" style='color:black;'ng-repeat='x in solutions' ng-click='showModal($event,x.user_image,x.user_name,x.solution_abstract,x.solution_solution,x.solution_upvotes,x.solution_id)'>
+              <br>
+              <div class="card  darken-1">
+                <div class="card-content ">
+                  <span class="card-title"><img src='{{x.user_image}}' style='border-radius:50%;width:30px;height:30px;position:relative;bottom:3px;'></img><span style='margin-left:10px;'>{{x.user_name}}</span></span>
+                  <p>{{x.solution_abstract}}</p>
+                  <hr>
+                  Upvotes:{{x.solution_upvotes}}
+                </div>
+
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+           <div ng-controller='viewideascontroller' style="visibility: hidden">
+    <div class="md-dialog-container" id="myDialog">
+      <md-dialog aria-label="Mango (Fruit)">
+        <form ng-cloak>
+          <md-toolbar style='background-color:#424242;'>
+            <div class="md-toolbar-tools">
+              <h2 style='color:white;'><img src='{{image}}' style='border-radius:50%;width:30px;height:30px;position:relative;bottom:3px;'></img> {{name}}</h2>
+              <span flex></span>
+              <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+              </md-button>
+            </div>
+          </md-toolbar>
+
+          <md-dialog-content>
+            <div class="md-dialog-content">
+              <h3>{{abstract}}</h3>
+              <p ng-bind-html="solution"></p>
+
+
+            </div>
+          </md-dialog-content>
+
+          <md-dialog-actions layout="row">
+            <p >
+              Number of upvotes:{{noofupvotes}}
+            </p>
+
+
+          </md-dialog-actions>
+        </form>
+      </md-dialog>
+
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer id="footer" class="sm-padding bg-dark">
+
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Row -->
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <!-- footer logo -->
+          <div class="footer-logo">
+            <a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
+          </div>
+          <!-- /footer logo -->
+
+
+
+        </div>
+
+      </div>
+      <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+  </footer>
+  <!-- /Footer -->
+
+
+
+	<script src="bower_components/jquery/jquery-3.2.1.min.js"></script>
+
+	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+  <script src="bower_components/bootstrap/js/popper.js"></script>
+  <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/tilt/tilt.jquery.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.8/angular-sanitize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+<!-- Slider flies -->
+<script src="js/viewideasadmin.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <!-- Compiled and minified JavaScript -->
+
+</body>
+</html>

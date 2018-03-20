@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="otherideasapp">
+<head>
+	<title>ThirdEye - Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+  </style>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<!-- sliders -->
+	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
+	<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
+
+	<!-- Magnific Popup -->
+	<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+  <style>
+  #loginerror{
+    display:none;
+    margin-bottom: 30px;
+  }
+  #loginerrorspan{
+    color:#f44336;
+
+
+  }
+  .dropdown ul li a{
+    color:black;
+    padding:5px;
+  }
+  </style>
+  <link type="text/css" rel="stylesheet" href='css/contestpage.css' />
+</head>
+
+<body ng-controller='otherideascontroller'>
+  <!-- Header -->
+  <header id="home" style='height:100%; background:black;'>
+    <!-- Background Image -->
+
+    <!-- /Background Image -->
+
+    <!-- Nav -->
+    <nav id="nav" class="navbar nav-transparent">
+      <div class="container">
+
+        <div class="navbar-header">
+          <!-- Logo -->
+          <div class="navbar-brand">
+            <a href="index.html">
+              <img class="logo" src="img/logo.png" alt="logo">
+              <img class="logo-alt" src="img/logo-alt.png" alt="logo">
+            </a>
+          </div>
+          <!-- /Logo -->
+
+          <!-- Collapse nav button -->
+          <div class="nav-collapse">
+            <span></span>
+          </div>
+          <!-- /Collapse nav button -->
+        </div>
+
+        <!--  Main navigation  -->
+        <!--  Main navigation  -->
+				<ul class="main-nav nav navbar-nav navbar-right">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="challenges.html">Challenges</a></li>
+					<li ><a href="topsolvers.html">Top Solvers</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="otherideas.html">Submit your Idea</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="viewideas.html">View Ideas</a></li>
+				
+					<li ng-if='checkIfLoggedIn()==false'><a href="login.html">Login</a></li>
+					<li ng-if='checkIfLoggedIn()==false'><a href="signup.html">Signup</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="profile.html">Profile</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="logout.html">Logout</a></li>
+				</ul>
+        <!-- /Main navigation -->
+
+      </div>
+    </nav>
+    <!-- /Nav -->
+
+    <!-- home wrapper -->
+
+
+
+    <!-- /home wrapper -->
+
+
+  </header>
+  <div class='container' >
+    <div class='row'>
+      <div class='col-md-offset-1' style='margin-top:50px;'>
+          <h2>Have a new idea?Submit here</h2>
+          </p>
+          <hr>
+
+          <form enctype="multipart/form-data" method="POST">
+            <p>Abstract of the solution(max 400 chars) <span style='color:red;'>*</span></p>
+            <textarea class="input" placeholder="Abstract" id='abstract' required rows="4" maxlength="400" style="width:100%; padding:15px;"></textarea>
+            <br/>
+            </br>
+            <p>Solution <span style='color:red;'>*</span></p>
+            <textarea id="editor" style="height:100px;"></textarea>
+            <br/>
+            </br>
+            <p>Department <span style='color:red;'>*</span></p>
+            <div class="form-group">
+              <select class="form-control" id="department">
+                <option ng-repeat='x in departments' value='{{x.department_id}}'>{{x.department_name}}</option>
+
+              </select>
+            </div>
+            <br/>
+            </br>
+
+            <div  id="loginerror"style='margin-top:20px;'>
+                <span id="loginerrorspan">
+                  Please fill the solution field
+                </span>
+            </div>
+            <div style='text-align:center;'>
+            <button class='main-btn' ng-click='submit()' style='margin-bottom:20px;'>Submit</button></div>
+        </form>
+        </div>
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+
+	<!-- /About -->
+
+  <!-- Footer -->
+  <footer id="footer" class="sm-padding bg-dark">
+
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Row -->
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <!-- footer logo -->
+          <div class="footer-logo">
+            <a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
+          </div>
+          <!-- /footer logo -->
+
+
+
+        </div>
+
+      </div>
+      <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+  </footer>
+  <!-- /Footer -->
+
+
+
+	<script src="bower_components/jquery/jquery-3.2.1.min.js"></script>
+
+	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+  <script src="bower_components/bootstrap/js/popper.js"></script>
+  <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/tilt/tilt.jquery.min.js"></script>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.8/angular-sanitize.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+<!-- Slider flies -->
+<script src="js/otherideas.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>

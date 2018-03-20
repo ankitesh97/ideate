@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="contestapp">
+<head>
+	<title>ThirdEye - Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+  </style>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+	<!-- Angular Material style sheet -->
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<!-- sliders -->
+	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
+	<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
+
+	<!-- Magnific Popup -->
+	<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+  <style>
+  #loginerror{
+    display:none;
+    margin-bottom: 30px;
+  }
+  #loginerrorspan{
+    color:#f44336;
+
+
+  }
+	.disp{
+		display:none;
+	}
+  </style>
+  <link type="text/css" rel="stylesheet" href='css/contestpage.css' />
+
+</head>
+
+<body style='background-color:rgb(250,250,250);'ng-controller='contestcontroller'>
+  <!-- Header -->
+  <header id="home" style='height:auto; background:black;'>
+    <!-- Background Image -->
+
+    <!-- /Background Image -->
+
+    <!-- Nav -->
+    <nav id="nav" class="navbar nav-transparent">
+      <div class="container">
+
+        <div class="navbar-header">
+          <!-- Logo -->
+          <div class="navbar-brand">
+            <a href="index.html">
+              <img class="logo" src="img/logo.png" alt="logo">
+              <img class="logo-alt" src="img/logo-alt.png" alt="logo">
+            </a>
+          </div>
+          <!-- /Logo -->
+
+          <!-- Collapse nav button -->
+          <div class="nav-collapse">
+            <span></span>
+          </div>
+          <!-- /Collapse nav button -->
+        </div>
+
+        <!--  Main navigation  -->
+        <!--  Main navigation  -->
+				<ul class="main-nav nav navbar-nav navbar-right">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="challenges.html">Challenges</a></li>
+					<li ><a href="topsolvers.html">Top Solvers</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="otherideas.html">Submit your Idea</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="viewideas.html">View Ideas</a></li>
+
+					<li ng-if='checkIfLoggedIn()==false'><a href="login.html">Login</a></li>
+					<li ng-if='checkIfLoggedIn()==false'><a href="signup.html">Signup</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="profile.html">Profile</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="logout.html">Logout</a></li>
+				</ul>
+        <!-- /Main navigation -->
+
+      </div>
+    </nav>
+    <!-- /Nav -->
+
+    <!-- home wrapper -->
+
+
+
+    <!-- /home wrapper -->
+
+
+  </header>
+  <!-- /Header -->
+  <div class=" section md-padding" style="padding-top:0px;background:#000;">
+
+    <div class='container'>
+      <div class='row' style='margin-top:50px;'>
+        <div class="col-md-10 col-md-offset-1">
+
+              <p id='mainquestion' >{{quesdetails.title}} <p>
+                <div class='container prizeandtime' >
+              <div class='row'>
+                <div class='col-md-6'><div class='totalprize'>Total prize money: &#8377; {{quesdetails.total}}</div>
+                </div>
+                <div class='col-md-6'><div class='totalprize' style='float:right;'><i class="fa fa-clock-o" aria-hidden="true" style='margin-right:10px;'></i>{{getHoursLeft(quesdetails.final_time)}} {{currentState()}}</div>
+                </div>
+              </div>
+              </div>
+              <div class='container'>
+                <div class='row'>
+                  <div class='col-md-6'>{{quesdetails.description}}</div>
+                  <div class='col-md-4'>
+                    <img style='width:100%;height:300px;' src='{{quesdetails.question_image}}'>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="about" class="section md-padding" style='padding-top:50px;'>
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+        <div class='col-md-offset-1'>
+  				<p class='totalprize' style='color:black;'>
+            Deliverables
+          </p>
+          <hr>
+          <p ng-bind-html='quesdetails.deliverables'></p>
+          <p class='totalprize' style='color:black;'>
+            Prizes
+          </p>
+          <hr>
+          <p>First prize : &#8377;{{quesdetails.first_prize}}</p>
+          <p>Second prize : &#8377;{{quesdetails.second_prize}}</p>
+          <p>Third prize : &#8377;{{quesdetails.third_prize}}</p>
+          <p class='totalprize' style='color:black;'>
+          Submission Deadline
+          </p>
+          <hr>
+          <p>{{quesdetails.final_time}}</p>
+          <p class='totalprize' style='color:black;padding-top:5px;'>
+          Submission
+          </p>
+          <hr>
+
+          <form enctype="multipart/form-data" method="POST">
+            <p>Abstract of the solution(max 400 chars) <span style='color:red;'>*</span></p>
+            <textarea class="input" placeholder="Abstract" id='abstract' required rows="4" maxlength="400" style="width:100%; padding:15px;"></textarea>
+            <br/>
+            </br>
+            <p>Solution <span style='color:red;'>*</span></p>
+            <textarea id="editor" style="height:100px;"></textarea>
+            <br/>
+            </br>
+						<p ng-if="submission!='No Answer Exists'"> <a ng-href="{{submission.supp_file}}" download>Click here to download your solution file</a></p>
+            <p>Upload solution file</p>
+            <div>
+                        <div><label for="image_file">Please select solution file</label></div>
+                        <div><input type="file"  onchange="angular.element(this).scope().uploadedFile(this)" name="image_file" id="image_file"  /></div>
+            </div>
+            </br>
+            <div  id="loginerror"style='margin-top:20px;'>
+                <span id="loginerrorspan">
+                  Please fill the solution field
+                </span>
+            </div>
+            <div style='text-align:center;'>
+            <button class='main-btn' id='submit'ng-click='submit()'>Submit</button></div>
+						<div class='disp similarity'>
+							<div>{{msg}}</div>
+							Are you sure you want to submit?
+							<div style='text-align:center;margin-top:10px;'><button class='main-btn' ng-click='submitfinal()'>Yes</button>
+							<button style='margin-left:20px;'class='main-btn' ng-click='reload()'>No</button></div>
+						</div>
+        </form>
+        </div>
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /About -->
+
+  <!-- Footer -->
+  <footer id="footer" class="sm-padding bg-dark">
+
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Row -->
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <!-- footer logo -->
+          <div class="footer-logo">
+            <a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
+          </div>
+          <!-- /footer logo -->
+
+
+
+        </div>
+
+      </div>
+      <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+  </footer>
+  <!-- /Footer -->
+
+
+
+	<script src="bower_components/jquery/jquery-3.2.1.min.js"></script>
+
+	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+  <script src="bower_components/bootstrap/js/popper.js"></script>
+  <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/tilt/tilt.jquery.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.8/angular-sanitize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+<!-- Slider flies -->
+<script src='./js/ui-bootstrap-tpls-2.5.0.min.js'></script>
+<script src="js/contestpage.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>

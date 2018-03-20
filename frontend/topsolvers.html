@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='topsolvers_app' >
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>challenges</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="description" content="Template for a user settings, stats or profile page. This example has a tabbed layout, table with pagination, and various user stats panels." />
+        <!-- Google font -->
+      	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+      	<!-- Bootstrap -->
+      	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <!-- Font Awesome Icon -->
+      	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+      	<!-- Custom stlylesheet -->
+      	<link type="text/css" rel="stylesheet" href="css/style.css" />
+        <link href="./bower_components/materializecss/theme.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="./bower_components/materializecss/materialize.min.css">
+
+          <style type="text/css">
+          .themes{
+            text-align: center;
+            font-weight: bold;
+          }
+          .margin-left{
+            margin-left: 70px;
+          }
+          .image{
+            width: 20%;
+          }
+
+          .actual_width{
+            width: 100%;
+          }
+          .card-right-content{
+            font-size: 19px;
+            font-weight: 500;
+            color: #444444;
+          }
+          .card-main-content{
+            font-size: 19px;
+            font-weight: 500;
+            color: #444444;
+          }
+          .sidebar-outer {
+            margin-top: 10px;
+            position: relative;
+          }
+          .fixed{
+            position: fixed;
+          }
+          .challenge_summary_bg {
+            opacity: 0.8;
+            isplay: block;
+            /* position: absolute; */
+            left: 0;
+            top: -20px;
+            /* min-width: 100%; */
+            /* min-height: 20%;
+            background-repeat: no-repeat;
+            background-position: 50% 0;
+            -ms-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            background-size: cover; */ */
+          }
+          .list-group-item:hover{
+            cursor:pointer;
+          }
+          .card-main-content{
+            font-family: 'Varela Round', sans-serif;
+            font-size: 20px;
+            line-height: 1.6;
+            color: #868F9B;
+          }
+          </style>
+
+
+      </head>
+
+      <!-- HTML code from Bootply.com editor -->
+
+      <body ng-controller='topsolvers_controller'>
+        <!-- <img class="challenge_summary_bg" src="bg.png"> -->
+        <!-- Header -->
+        <header id="home" style='height:auto;'>
+          <!-- Nav -->
+          <nav id="nav" class="navbar nav-transparent">
+            <div class="container">
+
+              <div class="navbar-header">
+                <!-- Logo -->
+                <div class="navbar-brand">
+                  <a href="index.html">
+                    <img class="logo" src="img/logo.png" alt="logo">
+                    <img class="logo-alt" src="img/logo-alt.png" alt="logo">
+                  </a>
+                </div>
+                <!-- /Logo -->
+
+                <!-- Collapse nav button -->
+                <div class="nav-collapse">
+                  <span></span>
+                </div>
+                <!-- /Collapse nav button -->
+              </div>
+
+              <!--  Main navigation  -->
+              <ul class="main-nav nav navbar-nav navbar-right">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="challenges.html">Challenges</a></li>
+                <li ><a href="#home">Top Solvers</a></li>
+                <li ng-if='checkIfLoggedIn()==true'><a href="otherideas.html">Submit your Idea</a></li>
+                <li ng-if='checkIfLoggedIn()==true'><a href="viewideas.html">View Ideas</a></li>
+              
+                <li ng-if='checkIfLoggedIn()==false'><a href="login.html">Login</a></li>
+                <li ng-if='checkIfLoggedIn()==false'><a href="signup.html">Signup</a></li>
+                <li ng-if='checkIfLoggedIn()==true'><a href="profile.html">Profile</a></li>
+                <li ng-if='checkIfLoggedIn()==true'><a href="logout.html">Logout</a></li>
+              </ul>
+              <!-- /Main navigation -->
+
+            </div>
+          </nav>
+
+
+              </div>
+            </div>
+          </div>
+          <!-- /home wrapper -->
+
+        </header>
+          <!-- /Nav -->
+          <!-- Footer -->
+          <div id="about" class="section md-padding" style='padding-top:50px;'>
+            <div class='container'>
+            <div class='row' >
+              <div class='col-md-offset-1'>
+                <h2>Top Solvers</h2>
+                <div class="col-xs-10 content">
+                  <br>
+                  <div class="card horizontal panel-body" style="margin-bottom:30px;padding:0;" ng-repeat="x in solvers" ng-attr-id="{{x.user_name}}" ng-click="goToUser(x.user_name)">
+                    <div class="card-image col-xs-3" style='padding:0;'>
+                      <img style='height:200px;' src={{x.user_image}}>
+                    </div>
+                    <div class="card-stacked" class='col-xs-8'>
+                      <div class="card-content">
+                        <div style='font-weight:700;color:#10161A;'class=" card-main-content col-xs-6">
+                          {{x.name}}
+                        </div>
+                        <div class=" col-xs-6">
+                          <div>
+                            <p>Total Earnings:&#8377;{{x.earnings}}</p>
+                            <p>Questions Answered:{{x.questions_answered}}</p>
+                          </div>
+                          <br>
+                          <br>
+                        </div>
+                      </div>
+
+                    </div>
+                </div>
+                </div>
+
+              </div>
+            </div>
+            </div>
+          </div>
+        	<footer id="footer" class="sm-padding bg-dark">
+
+        		<!-- Container -->
+        		<div class="container">
+
+        			<!-- Row -->
+        			<div class="row">
+
+        				<div class="col-md-12">
+
+        					<!-- footer logo -->
+        					<div class="footer-logo">
+        						<a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
+        					</div>
+        					<!-- /footer logo -->
+
+        				</div>
+
+        			</div>
+        			<!-- /Row -->
+
+        		</div>
+        		<!-- /Container -->
+
+        	</footer>
+        	<!-- /Footer -->
+
+          <script src="bower_components/jquery/jquery-3.2.1.min.js"></script>
+        	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+          <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+          <script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+      <script type="text/javascript" src="js/main.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+                  <script src="./js/topsolvers.js"></script>
+
+            <!-- Compiled and minified CSS -->
+
+            <!-- Compiled and minified JavaScript -->
+            <script src="./bower_components/materializecss/materialize.min.js"></script>
+
+
+          </body>
+      </html>

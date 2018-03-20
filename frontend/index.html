@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='main_app'>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>HTML Template</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<!-- sliders -->
+	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
+	<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
+
+	<!-- Magnific Popup -->
+	<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+<style>
+
+
+</style>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body ng-controller='main_controller'>
+	<!-- Header -->
+	<header id="home">
+		<!-- Background Image -->
+		<div class="bg-img" style="background-image: url('./img/background.jpg');">
+			<div class="overlay"></div>
+		</div>
+		<!-- /Background Image -->
+
+		<!-- Nav -->
+		<nav id="nav" class="navbar nav-transparent">
+			<div class="container">
+
+				<div class="navbar-header">
+					<!-- Logo -->
+					<div class="navbar-brand">
+						<a href="index.html">
+							<img class="logo" src="img/logo.png" alt="logo">
+							<img class="logo-alt" src="img/logo-alt.png" alt="logo">
+						</a>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Collapse nav button -->
+					<div class="nav-collapse">
+						<span></span>
+					</div>
+					<!-- /Collapse nav button -->
+				</div>
+
+				<!--  Main navigation  -->
+				<ul class="main-nav nav navbar-nav navbar-right">
+					<li><a href="#home">Home</a></li>
+					<li><a href="challenges.html">Challenges</a></li>
+					<li ><a href="topsolvers.html">Top Solvers</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="otherideas.html">Submit your Idea</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="viewideas.html">View Ideas</a></li>
+					<li ng-if='checkIfLoggedIn()==false'><a href="login.html">Login</a></li>
+					<li ng-if='checkIfLoggedIn()==false'><a href="signup.html">Signup</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="profile.html">Profile</a></li>
+					<li ng-if='checkIfLoggedIn()==true'><a href="logout.html">Logout</a></li>
+				</ul>
+				<!-- /Main navigation -->
+
+			</div>
+		</nav>
+		<!-- /Nav -->
+
+		<!-- home wrapper -->
+		<div class="home-wrapper">
+			<div class="container">
+				<div class="row">
+
+					<!-- home content -->
+					<div class="col-md-10 col-md-offset-1">
+						<div class="home-content">
+							<h1 class="white-text">Help Government Innovate</h1>
+							<p class="white-text">Our aim is to create a platform for the citizens to provide innovative solutions which acts as a fuel to government's innovation agenda, and in turn government gives incentives to the best ideas</p><button class="main-btn" onclick="document.location.href='challenges.html';">Start solving</a></button>
+						</div>
+					</div>
+					<!-- /home content -->
+
+				</div>
+			</div>
+		</div>
+		<!-- /home wrapper -->
+
+	</header>
+	<!-- /Header -->
+	<!-- About -->
+
+	<div id="about" class="section md-padding">
+
+	  <!-- Container -->
+	  <div class="container">
+
+	    <!-- Row -->
+	    <div class="row">
+
+	      <!-- Section header -->
+	      <div class="section-header text-center">
+	        <h2 class="title">How does  <img src="img/logo.png" alt="logo"> work?</h2>
+	      </div>
+	      <!-- /Section header -->
+
+	      <!-- about -->
+	      <div class="col-md-4">
+	        <div class="about">
+	          <i class="fa fa-cogs"></i>
+	          <h3>Solve Challenges</h3>
+	          <p>FInd a challenge in your forte,put your best solution forward.<br>Be a part of governance</p>
+
+	        </div>
+	      </div>
+	      <!-- /about -->
+
+	      <!-- about -->
+	      <div class="col-md-4">
+	        <div class="about">
+	          <i class="fa fa-magic"></i>
+	          <h3>Post Innovative Solutions</h3>
+	          <p>Have an innovative way to solve a problem? Post is here and we will make sure your voice is heard.</p>
+
+	        </div>
+	      </div>
+	      <!-- /about -->
+
+	      <!-- about -->
+	      <div class="col-md-4">
+	        <div class="about">
+	          <i class="fa fa-trophy"></i>
+
+
+	          <h3>Win prizes</h3>
+	          <p>Challenges have incentives.Submit solutions and get a chance to win cash prizes.</p>
+
+	        </div>
+	      </div>
+	      <!-- /about -->
+
+	    </div>
+	    <!-- /Row -->
+
+	  </div>
+	  <!-- /Container -->
+
+	</div>
+	<!-- /About -->
+
+
+	<!-- Portfolio -->
+	<div id="portfolio" class="section md-padding bg-grey">
+
+				<!-- Container -->
+				<div class="container">
+
+					<!-- Row -->
+					<div class="row">
+
+						<!-- Section header -->
+						<div class="section-header text-center">
+							<h2 class="title">Recent Questions</h2>
+						</div>
+						<!-- /Section header -->
+						<div class="your-class1">
+							<div class="team" ng-repeat="x in challenges" ng-attr-id="{{x.question_id}}" ng-click="goToChallenge(x.question_id)">
+								<div class="team-img">
+									<img class="img-responsive" src="{{x.image}}" alt="">
+
+								</div>
+								<div >
+
+									<span>{{x.title}}</span>
+									<hr>
+									<span><i class="fa fa-clock-o" aria-hidden="true"></i> {{getHoursLeft(x.time)}} {{currentState()}}</span>
+									<hr>
+									<span>&#8377;{{x.award}}</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- /Row -->
+
+				</div>
+				<!-- /Container -->
+
+
+
+	</div>
+	<!-- /Portfolio -->
+
+	<!-- Service -->
+	<div id="service" class="section md-padding">
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section header -->
+				<div class="section-header text-center">
+					<h2 class="title">Top Solvers</h2>
+				</div>
+				<!-- /Section header -->
+				<div class="your-class2">
+
+						<div class="team" ng-repeat="x in solvers" ng-attr-id="{{x.user_name}}" ng-click="goToUser(x.user_name)">
+							<div class="team-img">
+								<img class="img-responsive" style='height:320px;' src="{{x.user_image}}" alt="">
+
+							</div>
+							<div >
+
+								<span>{{x.name}}</span>
+								<hr>
+								<span>Total Earnings:&#8377;{{x.earnings}}</span>
+							</div>
+						</div>
+
+				</div>
+
+
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+	</div>
+	<!-- /Service -->
+
+
+	<!-- Footer -->
+	<footer id="footer" class="sm-padding bg-dark">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<!-- footer logo -->
+					<div class="footer-logo">
+						<a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
+					</div>
+					<!-- /footer logo -->
+
+
+
+
+
+				</div>
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</footer>
+	<!-- /Footer -->
+
+	<!-- Back to top -->
+	<div id="back-to-top"></div>
+	<!-- /Back to top -->
+
+	<!-- Preloader -->
+	<div id="preloader">
+		<div class="preloader">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	<!-- /Preloader -->
+
+
+
+	<!-- jQuery Plugins -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="./js/index.js"></script>
+
+<!-- Slider flies -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="js/slick.js"></script>
+	<script type="text/javascript">
+
+	</script>
+
+</body>
+
+</html>

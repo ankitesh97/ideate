@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="viewsubmissionapp">
+<head>
+	<title>ThirdEye - Admin</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+  </style>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<!-- sliders -->
+	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
+	<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
+
+	<!-- Magnific Popup -->
+	<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="css/newchallenge.css" />
+  <style>
+  #loginerror{
+    display:none;
+    margin-bottom: 30px;
+  }
+  #loginerrorspan{
+    color:#f44336;
+  }
+  .question_text{
+    color: #262626;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  #primary-badge{
+    color:#;
+  }
+  .nav-tabs{
+    cursor:pointer;
+  }
+  .hide-nav-tab-div{
+    display: none;
+  }
+  </style>
+  <link type="text/css" rel="stylesheet" href='css/viewsubmission.css' />
+  <!-- <link type="text/css" rel="stylesheet" href='css/contestpage.css' /> -->
+</head>
+
+<body ng-controller='viewsubmissioncontroller'>
+  <!-- Header -->
+  <header id="home" style='height:100%; background:black;'>
+    <!-- Background Image -->
+
+    <!-- /Background Image -->
+
+    <!-- Nav -->
+    <nav id="nav" class="navbar nav-transparent">
+      <div class="container">
+
+        <div class="navbar-header">
+          <!-- Logo -->
+          <div class="navbar-brand">
+            <a href="index.html">
+              <img class="logo" src="img/logo.png" alt="logo">
+              <img class="logo-alt" src="img/logo-alt.png" alt="logo">
+            </a>
+          </div>
+          <!-- /Logo -->
+
+          <!-- Collapse nav button -->
+          <div class="nav-collapse">
+            <span></span>
+          </div>
+          <!-- /Collapse nav button -->
+        </div>
+
+        <!--  Main navigation  -->
+        <!--  Main navigation  -->
+				<ul class="main-nav nav navbar-nav navbar-right">
+          <li class="active"><a href="mychallenge.html">My Challenges</a></li>
+          <li><a href="admin-newchallenge.html">New Challenge</a></li>
+					<li><a href='viewideasadmin.html'>View ideas</a></li>
+					<li><a href="logout.html">Logout</a></li>
+				</ul>
+      </div>
+    </nav>
+
+  </header>
+  <div class="section md-padding" style='padding-top:50px;'>
+    <div class="container target">
+              <div class="row">
+                <div class='col-md-offset-1'>
+                  <p class='totalprize' style='color:black;'>
+                    {{quesDetails.title}} <span class="label label-primary" style="margin-left:5px">First Prize: &#8377;{{quesDetails.first_prize}}</span><span class="label label-success" style="margin-left:5px">Second Prize: &#8377;{{quesDetails.second_prize}}</span><span class="label label-warning" style="margin-left:5px">Third Prize: &#8377;{{quesDetails.third_prize}}</span>
+                  </p>
+                  <hr/>
+                  <p style='color:black;'>
+                      {{quesDetails.description}}
+                  </p>
+                  <br/>
+                  <p class='totalprize' style='color:black;'>
+                    Deliverables
+                  </p>
+                  <hr/>
+                  <p style="color:black;" ng-bind-html='quesDetails.deliverables'>
+
+                  </p>
+                  <br/>
+                  <p class="totalprize" style="color:black">
+                  Submissions <span class="label label-primary"> Total Submissions:{{total}}</span>
+                  </p>
+                  <ul class="nav nav-pills" role="tablist">
+                    <li role="presentation" class="active nav-tabs nav-tabs-active"><a>All</a></li>
+                    <li role="presentation" class="nav-tabs"><a>Starred</a></li>
+                  </ul>
+                  <br/>
+
+                  <div class="nav-tabs-display" id="nav-tab-all">
+                    <div ng-repeat="x in answers" class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{{x.abstract}} <a href="#" style="float:right;"><span ng-class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a><a style="float:right;margin-right: 16px"><span ng-class="getClass({{x.starred}})" ng-attr-id="all-{{x.answer_id}}" ng-click="starClicked($event)" aria-hidden="true"></span></a>
+                        <a style="float:right;margin-right: 16px"><span class="glyphicon glyphicon-piggy-bank" ng-click="pigClicked($event)" ng-attr-id="all-piggy-{{x.answer_id}}" data-toggle="modal" data-target="#exampleModal" aria-hidden="true"></span></a>
+                      </h3>
+                    </div>
+                    <div class="panel-body" ng-bind-html='x.solution'>
+
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="nav-tabs-display hide-nav-tab-div" id="nav-tab-starred">
+                    <div class="panel panel-default" ng-repeat="x in answers">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{{x.abstract}} <a href="#" style="float:right;"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a><a style="float:right;margin-right: 16px"><span ng-class="getClass({{x.starred}})" ng-click="starClicked($event)" ng-attr-id="starred-{{x.answer_id}}" aria-hidden="true"></span></a>
+                        <a style="float:right;margin-right: 16px"><span class="glyphicon glyphicon-piggy-bank" ng-click="pigClicked($event)" ng-attr-id="starred-piggy-{{x.answer_id}}" data-toggle="modal" data-target="#exampleModal" aria-hidden="true"></span></a>
+                      </h3>
+                    </div>
+                    <div class="panel-body" ng-bind-html='x.solution'>
+                    </div>
+                  </div>
+                  </div>
+                  <hr/>
+
+                  <p class='totalprize' style='color:black;'>
+                    Selections
+                  </p>
+                  <hr/>
+                  <ul>
+                    <li>First Prize <span id="1_selection" class="glyphicon glyphicon-remove" aria-hidden="true"></span></li>
+                    <li>Second Prize <span id="2_selection" class="glyphicon glyphicon-remove" aria-hidden="true"></span></li>
+                    <li>Third Prize <span  id="3_selection" class="glyphicon glyphicon-remove" aria-hidden="true"></span></li>
+                  </ul>
+                  <br/>
+                  <button class="btn btn-primary" class="winner_declare" ng-click="declareWinner()">Declare Winners</button>
+                </div>
+              </div>
+      <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select Winning Slot</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="modal-form">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Rank: </label>
+            <input type="text" type="number" class="form-control" id="rank"/>
+          </div>
+          <label id="form-answer-id" style="visibility: hidden;"></label>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary btn-send" data-dismiss="modal">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	</div>
+</div>
+  <footer id="footer" class="sm-padding bg-dark">
+
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Row -->
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <!-- footer logo -->
+          <div class="footer-logo">
+            <a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
+          </div>
+          <!-- /footer logo -->
+
+
+        </div>
+
+      </div>
+      <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+  </footer>
+  <!-- /Footer -->
+
+
+
+	<script src="bower_components/jquery/jquery-3.2.1.min.js"></script>
+
+	<!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+  <!-- <script src="js/popper.js"></script> -->
+  <script src="bower_components/bootstrap/js/popper.js"></script>
+  <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="bower_components/tilt/tilt.jquery.min.js"></script>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.8/angular-sanitize.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+<!-- Slider flies -->
+  <script src="js/viewsubmission.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript">
+    $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this);
+    modal.find('.modal-body input').val(recipient);
+});
+
+  </script>
+</body>
+</html>

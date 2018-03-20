@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='challenge_app' >
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>challenges</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="description" content="Template for a user settings, stats or profile page. This example has a tabbed layout, table with pagination, and various user stats panels." />
+        <!-- Google font -->
+      	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+      	<!-- Bootstrap -->
+      	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <!-- Font Awesome Icon -->
+      	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+      	<!-- Custom stlylesheet -->
+      	<link type="text/css" rel="stylesheet" href="css/style.css" />
+        <link href="./bower_components/materializecss/theme.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="./bower_components/materializecss/materialize.min.css">
+
+          <style type="text/css">
+          .themes{
+            text-align: center;
+            font-weight: bold;
+          }
+          .margin-left{
+            margin-left: 70px;
+          }
+          .image{
+            width: 20%;
+          }
+
+          .actual_width{
+            width: 100%;
+          }
+          .card-right-content{
+            font-size: 19px;
+            font-weight: 500;
+            color: #444444;
+          }
+          .card-main-content{
+            font-size: 19px;
+            font-weight: 500;
+            color: #444444;
+          }
+          .sidebar-outer {
+            margin-top: 10px;
+            position: relative;
+          }
+          .fixed{
+            position: fixed;
+          }
+          .challenge_summary_bg {
+            opacity: 0.8;
+            isplay: block;
+            /* position: absolute; */
+            left: 0;
+            top: -20px;
+            /* min-width: 100%; */
+            /* min-height: 20%;
+            background-repeat: no-repeat;
+            background-position: 50% 0;
+            -ms-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            background-size: cover; */ */
+          }
+          .list-group-item:hover{
+            cursor:pointer;
+          }
+          .card-main-content{
+            font-family: 'Varela Round', sans-serif;
+            font-size: 20px;
+            line-height: 1.6;
+            color: #868F9B;
+          }
+          </style>
+
+        <!-- CSS code from Bootply.com editor -->
+
+    </head>
+
+    <!-- HTML code from Bootply.com editor -->
+
+    <body ng-controller='challenge_controller'>
+      <!-- <img class="challenge_summary_bg" src="bg.png"> -->
+      <!-- Header -->
+    	<header id="home" style='height:50vh;'>
+    		<!-- Background Image -->
+    		<div class="bg-img" style="background-image: url('./img/abc.png');background-size:100%50%;background-position:left top; background-repeat:no-repeat;">
+    			<div class="overlay"></div>
+    		</div>
+    		<!-- /Background Image -->
+
+    		<!-- Nav -->
+    		<nav id="nav" class="navbar nav-transparent">
+    			<div class="container">
+
+    				<div class="navbar-header">
+    					<!-- Logo -->
+    					<div class="navbar-brand">
+    						<a href="index.html">
+    							<img class="logo" src="img/logo.png" alt="logo">
+    							<img class="logo-alt" src="img/logo-alt.png" alt="logo">
+    						</a>
+    					</div>
+    					<!-- /Logo -->
+
+    					<!-- Collapse nav button -->
+    					<div class="nav-collapse">
+    						<span></span>
+    					</div>
+    					<!-- /Collapse nav button -->
+    				</div>
+
+    				<!--  Main navigation  -->
+            <ul class="main-nav nav navbar-nav navbar-right">
+    					<li><a href="index.html">Home</a></li>
+    					<li><a href="#home">Challenges</a></li>
+    					<li ><a href="topsolvers.html">Top Solvers</a></li>
+              <li ng-if='checkIfLoggedIn()==true'><a href="otherideas.html">Submit your Idea</a></li>
+              <li ng-if='checkIfLoggedIn()==true'><a href="viewideas.html">View Ideas</a></li>
+
+    					<li ng-if='checkIfLoggedIn()==false'><a href="login.html">Login</a></li>
+    					<li ng-if='checkIfLoggedIn()==false'><a href="signup.html">Signup</a></li>
+    					<li ng-if='checkIfLoggedIn()==true'><a href="profile.html">Profile</a></li>
+    					<li ng-if='checkIfLoggedIn()==true'><a href="logout.html">Logout</a></li>
+    				</ul>
+    				<!-- /Main navigation -->
+
+    			</div>
+    		</nav>
+    		<!-- /Nav -->
+
+    		<!-- home wrapper -->
+    		<div class="home-wrapper">
+    			<div class="container">
+    				<div class="row">
+
+    					<!-- home content -->
+    					<div class="col-md-10 col-md-offset-1">
+    						<div class="home-content">
+    							<h1 class="white-text">We need your help</h1>
+    							<p class="white-text">View the challenges below and provide innovative solutions to stand a chance to win cash prizes.</p>
+    						</div>
+    					</div>
+    					<!-- /home content -->
+
+    				</div>
+    			</div>
+    		</div>
+    		<!-- /home wrapper -->
+
+    	</header>
+    	<!-- /Header -->
+
+    <div id="about" class="section md-padding" style='padding-top:50px;'>
+      <hr class=""><div class="container target">
+
+            <br>
+            <div class="row">
+              <div class="col-xs-3  sidebar-outer" >
+                <div class=" col-xs-12">
+                <br>
+                <ul class="list-group" style='display:inline-block;'>
+                  <li class="list-group-item text-muted"  contenteditable="false">THEMES</li>
+                  <li class="list-group-item text-center" ><a ng-click="getByTheme('All')" class="themes">All</a></li>
+                  <li class="list-group-item text-center"><a ng-click="getByTheme('Health Care')" class="themes">Health Care</a></li>
+                  <li class="list-group-item text-center"><a ng-click="getByTheme('Technical')" class="themes">Technical</a></li>
+                  <li class="list-group-item text-center"><a ng-click="getByTheme('General')" class="themes">General</a></li>
+                  <li class="list-group-item text-center" style='display:inline-block;'><a ng-click="getByTheme('Women And General')" class="themes">Women And General</a></li>
+
+                </ul>
+
+                </div>
+              </div>
+              <div class="col-xs-8 content">
+                <br>
+                <div class="card horizontal panel-body" style="margin-bottom:30px;padding:0;" ng-repeat="x in challenges" ng-attr-id="{{x.question_id}}" ng-click="goToChallenge(x.question_id)">
+                  <div class="card-image col-xs-4" style='padding:0;'>
+                    <img style='height:200px;width:100%;'src={{x.image}}>
+                  </div>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                      <div style='font-weight:700;color:#10161A;'class="pull-left card-main-content col-xs-8">
+                        {{x.title}}
+                      </div>
+                      <div class="pull-right col-xs-4">
+                        <div>
+                          <p style='float:right;font-weight:700;color:#10161A;' class="card-right-content"><i class="fa fa-clock-o" aria-hidden="true"></i> {{getHoursLeft(x.time)}}<br></p>
+                          <p style='float:right;'>{{currentState()}}</p>
+                        </div>
+                        <br>
+                        <br>
+                        <div style=' margin-top:10px;font-weight:700;color:#10161A;'>
+                          <p   class="pull-right card-right-content">&#8377;{{x.award}}</p>
+                        </div>
+                        </div>
+                    </div>
+
+                  </div>
+              </div>
+              </div>
+
+              </div>
+            </div>
+          </div>
+      <!-- <div clas='row'>
+        <br>
+        <br>
+        <div class="fixed col-sm-3">
+          <br>
+        <ul class="list-group">
+          <li class="list-group-item text-muted" contenteditable="false">THEMES</li>
+          <li class="list-group-item text-center"><a class="themes">All</a></li>
+          <li class="list-group-item text-center"><a class="themes">X</a></li>
+          <li class="list-group-item text-center"><a class="themes">Y</a></li>
+          <li class="list-group-item text-center"><a class="themes">Z</a></li>
+
+        </ul>
+
+
+      </div>
+
+        <div class="col-sm-8 margin-left" style="" >
+          <br>
+            <div class="card horizontal panel-body" style="margin-bottom:30px;" ng-repeat="x in challenges" ng-attr-id="{{x.question_id}}">
+              <div class="card-image">
+                <img src="https://lorempixel.com/100/190/nature/6">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <div class="pull-left card-main-content col-sm-9">
+                    {{x.title}}
+                  </div>
+                  <div class="pull-right col-sm-3">
+                    <div>
+                      <p class="card-right-content"><i class="fa fa-clock-o" aria-hidden="true"></i> {{getHoursLeft(x.time)}}<br></p>
+                      {{currentState()}}
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                      <p class="card-right-content">&#8377;{{x.award}}</p>
+                    </div>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+       </div>
+    </div> -->
+    <!-- Footer -->
+  	<footer id="footer" class="sm-padding bg-dark">
+
+  		<!-- Container -->
+  		<div class="container">
+
+  			<!-- Row -->
+  			<div class="row">
+
+  				<div class="col-md-12">
+
+  					<!-- footer logo -->
+  					<div class="footer-logo">
+  						<a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
+  					</div>
+  					<!-- /footer logo -->
+
+
+
+  				</div>
+
+  			</div>
+  			<!-- /Row -->
+
+  		</div>
+  		<!-- /Container -->
+
+  	</footer>
+  	<!-- /Footer -->
+
+    <script src="bower_components/jquery/jquery-3.2.1.min.js"></script>
+  	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+            <script src="./js/challenge.js"></script>
+
+      <!-- Compiled and minified CSS -->
+
+      <!-- Compiled and minified JavaScript -->
+      <script src="./bower_components/materializecss/materialize.min.js"></script>
+
+
+    </body>
+</html>
