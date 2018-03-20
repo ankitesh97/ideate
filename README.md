@@ -38,7 +38,7 @@ answers. And also the administrator can choose to sort
 according to the relevancy of the solution to the questions
 
 
-[Can view the presentation here!](https://drive.google.com/open?id=1trC4KPONN-ByrFzcwvDZ9ri0hFmVt9YI)
+[Can view the presentation here!](https://docs.google.com/presentation/d/1jNU545EYMoH_Nz4k1zefxvzp4ccC4AGWKOzAykyyo_s/present#slide=id.p3)
 
 [Can view the video here!](https://drive.google.com/file/d/1dvdPzzIX1lTCcfCKoSPF8_hk-H3pqW5q/view?usp=sharing)
 
